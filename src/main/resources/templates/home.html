@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kalėjimo valdymo sistema</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="text/css" rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+
+</head>
+<body>
+	<div th:insert="fragments/navigation.html :: nav"></div>
+	<h3 class="uk-text-center">Kalėjimo valdymo sistema</h3>
+	
+		<hr>
+		<div class="uk-container uk-flex uk-flex-around uk-width-1-1 uk-padding-small uk-flex-middle">
+			<div class="uk-card uk-card-secondary uk-card-hover uk-flex uk-flex-center uk-flex-column uk-flex-middle">
+				<div class="uk-card-header uk-width-1-1">
+				<h3 class="uk-card-title uk-text-center">Kaliniai</h3>
+				<hr>
+				</div>
+				
+				<div class="uk-card-body">
+					
+					<a class="uk-button uk-button-primary">Peržiūrėti kalinius</a>
+				</div>
+			</div>
+			
+			<div class="uk-card uk-card-secondary uk-card-hover uk-flex uk-padding-small uk-flex-center uk-flex-column uk-flex-middle">
+				<div class="uk-card-header uk-width-1-1">
+				<h3 class="uk-card-title uk-text-center">Prižiūrėtojai</h3>
+				<hr>
+				</div>
+				
+				<div class="uk-card-body">
+					
+					<a class="uk-button uk-button-primary">Peržiūrėti prižiūrėtojus</a>
+				</div>
+			</div>
+			
+			<div class="uk-card uk-card-secondary uk-card-hover uk-flex uk-padding-small uk-flex-center uk-flex-column uk-flex-middle">
+				<div class="uk-card-header uk-width-1-1">
+				<h3 class="uk-card-title uk-text-center">Lankytojai</h3>
+				<hr>
+				</div>
+				
+				<div class="uk-card-body">
+					
+					<a class="uk-button uk-button-primary">Peržiūrėti lankytojus</a>
+				</div>
+			</div>
+		</div>
+	
+</body>
+</html>
