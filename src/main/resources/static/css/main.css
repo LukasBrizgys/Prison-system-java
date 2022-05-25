@@ -5,13 +5,208 @@
 }
 a, a:hover, a:focus, a:active{
 	text-decoration:none;
-	color:inherit;
 }
 a:visited{
 	color:inherit;
 }
 
 /* Navbar style */
-.navbar-link{
-	font-size:30px; 
+.navbar{
+	display:flex;
+	justify-content:space-between;
+	font-family: 'Playfair Display', serif;
+	background-color:#303030;
+	color:white;
+	font-size:25px;
+	align-items:center;
+	height:70px;
+}
+.navbar-left .navbar-link-list{
+	margin-left:20px;
+}
+.navbar-right .navbar-link-list{
+	margin-right:20px;
+	gap:5%;
+}
+.navbar-link-list{
+	list-style:none;
+	display:flex;
+	
+}
+.navbar-left{
+	float:left;
+}
+/* Home style */
+.home-heading{
+	font-family: 'Playfair Display', serif;
+	text-align:center;
+	margin-top:40px;
+	font-size:40px;
+}
+.divider
+{
+	position: relative;
+	height: 1px;
+	margin-top:5px;
+}
+
+.div-transparent:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 1px;
+	background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
+.home-control-panel{
+	display:flex;
+	flex-wrap:wrap;
+	font-family: 'Playfair Display', serif;
+	justify-content:center;
+	margin-top:40px;
+	gap:5%;
+}
+.card-body{
+	background-color:#303030;
+	font-size:30px;
+	padding:60px;
+	color:white;
+	margin-bottom:40px;
+}
+.card-header{
+	text-align:center;
+}
+.card-inner-body{
+	margin-top:20px;
+}
+.card-button{
+	transition:background-color 0.3s;
+	cursor:pointer;
+	background-color:white;
+	border:1px solid white;
+	color:black;
+	padding:20px;
+	margin-top:5px;
+	font-size:20px;
+	
+}
+.card-button:hover{
+	background-color:#303030;
+	border:1px solid white;
+	color:white;
+}
+/* Register style */
+.register-form-container{
+	width:100%;
+	margin:auto;
+}
+.register-form{
+	padding:20px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:10px;
+}
+.register-field-container{
+	width:25%;
+	display:flex;
+	flex-direction:column;
+}
+.register-form-error-container{
+	width:100%;
+	font-size:17px;
+	padding:10px 22px;
+	color:#721c24;
+	font-family: 'Playfair Display', serif;
+	font-weight:600;
+	background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+}
+.register-form-label{
+	font-size:18px;
+	font-family: 'Playfair Display', serif;
+	font-weight:600;
+}
+.register-city-option{
+	font-size:18px;
+	font-family: 'Playfair Display', serif;
+	font-weight:600;
+}
+.register-form-input{
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:content-box;
+	width: 100%;
+	padding: 12px 20px;
+}
+.register-form-error-list{
+	width:100%;
+	list-style:none;
+}
+
+.register-heading{
+	font-family: 'Playfair Display', serif;
+	text-align:center;
+	margin-top:40px;
+	font-size:40px;
+}
+.register-button{
+	cursor:pointer;
+	font-family: 'Playfair Display', serif;
+	font-weight:600;
+	background-color:white;
+	padding:10px 40px;
+	font-size:20px;
+}
+/* Login style */
+.login-heading{
+	text-align:center;
+	font-family: 'Playfair Display', serif;
+	margin-top:80px;
+}
+
+.login-form{
+	font-family: 'Playfair Display', serif;
+	padding:20px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:10px;
+}
+.login-input-container{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.login-submit-button{
+	font-family: 'Playfair Display', serif;
+	font-size:25px;
+	cursor:pointer;
+	margin-top:20px;
+	background-color:#303030;
+	border:none;
+	color:white;
+	padding:20px 35px;
+}
+.login-input{
+	font-family: 'Playfair Display', serif;
+	font-size:20px;
+	width:20rem;
+	height:30px;
+}
+.login-input:focus{
+	outline: none !important;
+    border:2px solid #303030;;
+}
+.login-label{
+	font-size:20px;
 }
