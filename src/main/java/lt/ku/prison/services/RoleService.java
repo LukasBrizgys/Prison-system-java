@@ -30,4 +30,7 @@ public class RoleService {
 		old.setRole(role.getRole());
 		return old;
 	}
+	public Role getRoleByName(String role) {
+		return roleRepository.findByRole(role);
+	}
 }
