@@ -6,9 +6,7 @@
 a, a:hover, a:focus, a:active{
 	text-decoration:none;
 }
-a:visited{
-	color:inherit;
-}
+
 
 /* Navbar style */
 .navbar{
@@ -19,19 +17,32 @@ a:visited{
 	color:white;
 	font-size:25px;
 	align-items:center;
-	height:70px;
+	height:80px;
 }
+
+
 .navbar-left .navbar-link-list{
 	margin-left:20px;
 }
 .navbar-right .navbar-link-list{
-	margin-right:20px;
-	gap:5%;
+	width:100%;
+	align-items:center;
+	margin-right:40px;
+	gap:7%;
+}
+.navbar-link a{
+	color:white;
+}
+.navbar-link a:visited{
+	color:white;
 }
 .navbar-link-list{
 	list-style:none;
 	display:flex;
 	
+}
+.login-name{
+	display:inline-block;
 }
 .navbar-left{
 	float:left;
@@ -70,6 +81,7 @@ a:visited{
 	gap:5%;
 }
 .card-body{
+	flex-basis: 18%;
 	background-color:#303030;
 	font-size:30px;
 	padding:60px;
@@ -80,6 +92,8 @@ a:visited{
 	text-align:center;
 }
 .card-inner-body{
+	display:flex;
+	justify-content:center;
 	margin-top:20px;
 }
 .card-button{
@@ -88,10 +102,13 @@ a:visited{
 	background-color:white;
 	border:1px solid white;
 	color:black;
-	padding:20px;
+	padding:20px 40px;
 	margin-top:5px;
 	font-size:20px;
 	
+}
+.card-button:visited{
+	color:black;
 }
 .card-button:hover{
 	background-color:#303030;
@@ -117,9 +134,8 @@ a:visited{
 	flex-direction:column;
 }
 .register-form-error-container{
-	width:100%;
 	font-size:17px;
-	padding:10px 22px;
+	padding:10px 5px;
 	color:#721c24;
 	font-family: 'Playfair Display', serif;
 	font-weight:600;
@@ -143,8 +159,8 @@ a:visited{
 	-moz-box-sizing:content-box;
 	-webkit-box-sizing:content-box; 
 	box-sizing:content-box;
-	width: 100%;
-	padding: 12px 20px;
+	padding:5px;
+	font-size:25px;
 }
 .register-form-error-list{
 	width:100%;
@@ -208,5 +224,53 @@ a:visited{
     border:2px solid #303030;;
 }
 .login-label{
+	font-size:20px;
+}
+/* Prisoners list style */
+.prisoners-list-heading{
+	text-align:center;
+	font-family: 'Playfair Display', serif;
+	margin-top:80px;
+	font-size:40px;
+}
+
+.prisoner-list-container{
+	width:90%;
+	margin-top:40px;
+	margin-left:auto;
+	margin-right:auto;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	padding:10px;
+}
+.prisoner-list-container td, th{
+	padding:20px;
+	border-bottom:1px solid black;
+	text-align:center;
+}
+.prisoner-list-container table{
+	margin-top:20px;
+	font-size:30px;
+	border-collapse: collapse;
+  	width: 100%;
+}
+.new-prisoner-button{
+	align-self:flex-end;
+	background-color:#303030;
+	border:1px solid #303030;
+	font-family: 'Playfair Display', serif;
+	color:white;
+	padding:10px;
+	font-size:20px;
+}
+.action-button{
+	background-color:#303030;
+	padding:10px;
+	border:1px solid #303030;
+	font-family: 'Playfair Display', serif;
+	color:white;
 	font-size:20px;
 }

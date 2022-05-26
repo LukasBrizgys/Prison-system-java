@@ -38,9 +38,9 @@
 		<div class="register-field-container">
 			<label for="register-email" class="register-form-label">El. paštas: *</label>
 			<input type="email" class="register-form-input" id="register-email" th:value="*{email}" name="email">
-			<div class="register-form-error-container" th:if="${#fields.hasErrors('passwordRepeat')}">
+			<div class="register-form-error-container" th:if="${#fields.hasErrors('email')}">
 				<ul class="register-form-error-list">
-					<li class="register-form-error" th:each="error: ${#fields.errors('passwordRepeat')}" th:text="${error}"></li>
+					<li class="register-form-error" th:each="error: ${#fields.errors('email')}" th:text="${error}"></li>
 				</ul>
 			</div>
 		</div>

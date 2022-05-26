@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link type="text/css" rel="stylesheet" href="./css/main.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div th:insert="fragments/navigation.html :: nav"></div>
@@ -24,7 +24,7 @@
 				
 				<div class="card-inner-body">
 					
-					<a class="card-button">Peržiūrėti kalinius</a>
+					<a href="/prisoner/" class="card-button">Peržiūrėti kalinius</a>
 				</div>
 			</div>
 			
@@ -36,7 +36,7 @@
 				
 				<div class="card-inner-body">
 					
-					<a class="card-button">Peržiūrėti prižiūrėtojus</a>
+					<a href="/supervisor/" class="card-button">Peržiūrėti prižiūrėtojus</a>
 				</div>
 			</div>
 			
@@ -48,7 +48,7 @@
 				
 				<div class="card-inner-body">
 					
-					<a class="card-button">Peržiūrėti lankytojus</a>
+					<a href="/visitor/" class="card-button">Peržiūrėti lankytojus</a>
 				</div>
 			</div>
 		</div>
