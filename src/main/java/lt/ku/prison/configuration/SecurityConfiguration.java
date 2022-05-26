@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import lt.ku.prison.services.UserService;
@@ -19,9 +18,13 @@ public class SecurityConfiguration{
 	
 	@Autowired
 	UserService userService;
-
 	
-	public WebSecurityCustomizer webSecurityCustomizer(AuthenticationManagerBuilder auth) throws Exception {
+	@Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+    public WebSecurityCustomizer webSecurityCustomizer(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
 		auth.userDetailsService(this.userService)
 		.passwordEncoder(bc);
@@ -34,8 +37,9 @@ public class SecurityConfiguration{
 			}
 		};
 	}
-	@Bean
+    @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		
 		http.authorizeHttpRequests((authz) -> {
 			try {
 				authz
@@ -63,8 +67,5 @@ public class SecurityConfiguration{
 		return http.build();
 	}
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 }
