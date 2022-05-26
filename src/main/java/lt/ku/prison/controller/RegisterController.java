@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lt.ku.prison.entities.Role;
 import lt.ku.prison.entities.User;
 import lt.ku.prison.services.CityService;
+import lt.ku.prison.services.RoleService;
 import lt.ku.prison.services.UserService;
 
 @Controller
@@ -24,6 +26,8 @@ public class RegisterController {
 	@Autowired
 	CityService cityService;
 	
+	@Autowired
+	RoleService roleService;
 	
 	@RequestMapping("/register")
 	public String home(Model model) {
@@ -38,17 +42,20 @@ public class RegisterController {
 			@ModelAttribute User user,
 			BindingResult result,
 			@RequestParam("cityId") Integer cityId,
+			@RequestParam("password") String password,
 			@RequestParam("passwordRepeat") String passwordRepeat,
 			Model model
 			) {
-		String password = user.getPassword();
-		if(password != passwordRepeat) result.rejectValue("passwordRepeat","error.user.passwordRepeat", "Slaptažodžiai nesutampa");
+		if(!password.equals(passwordRepeat)) result.rejectValue("passwordRepeat","error.user.passwordRepeat", "Slaptažodžiai nesutampa");
 		
 		if(result.hasErrors()) {
 			model.addAttribute("cities", cityService.getCities());
 			return "register";
 		}
-		
-		return "register";
+		Role role = roleService.getRoleByName("Prižiūrėtojas");
+		user.setRole(role);
+		user.setCity(cityService.getCity(cityId));
+		userService.addUser(user);
+		return "redirect:/";
 	}
 }
