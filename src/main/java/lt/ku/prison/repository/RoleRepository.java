@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import lt.ku.prison.entities.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer>{
-	
+	Role findByRole(String name);
 }
