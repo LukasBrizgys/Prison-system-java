@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>Kalinių sąrašas</title>
+	<meta charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="fragments/navigation.html :: nav"></div>
+	<h3 class="prisoners-list-heading">Kalinių sąrašas</h3>
+	<div class="divider div-transparent"></div>
+	<div class="prisoner-list-container">
+		<a href="/prisoner/new" class="new-prisoner-button">Pridėti naują kalinį</a>
+		<table>
+		<tr>
+			<th>Vardas</th>
+			<th>Pavardė</th>
+			<th>Gimimo metai</th>
+			<th>Miestas</th>
+			<th>Statusas</th>
+			<th>Veiksmai</th>
+		</tr>
+		<tr th:each="prisoner: ${prisoners}">
+			<td th:text="${prisoner.name}"></td>
+			<td th:text="${prisoner.surname}"></td>
+			<td th:text="${prisoner.birthDate}"></td>
+			<td th:text="${prisoner.city.name}"></td>
+			<td th:text="${prisoner.status.status}"></td>
+			<td>
+				<a class="action-button" th:href="'/prisoner/update/' + ${prisoner.id}">Redaguoti kalinį</a>
+				<a class="action-button" th:href="'/prisoner/delete/' + ${prisoner.id}">Pašalinti kalinį</a>
+			</td>
+		</tr>
+		
+		</table>
+	</div>
+</body>
+</html>
