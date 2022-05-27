@@ -20,7 +20,9 @@ public class PrisonerService {
 	public Prisoner getPrisoner(Integer id) {
 		return prisonerRepository.getReferenceById(id);
 	}
-	
+	public Prisoner addPrisoner(Prisoner prisoner) {
+		return prisonerRepository.save(prisoner);
+	}
 	public void deletePrisoner(Integer id) {
 		prisonerRepository.deleteById(id);
 	}
@@ -32,6 +34,7 @@ public class PrisonerService {
 		old.setPhone(prisoner.getPhone());
 		old.setCity(prisoner.getCity());
 		old.setStatus(prisoner.getStatus());
+		prisonerRepository.save(old);
 		return old;
 	}
 }
