@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>Kalinio redagavimas</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="https://npmcdn.com/flatpickr/dist/l10n/lt.js"></script>
+	</head>
+	<body>
+		<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="prisoner-heading">Kalinio redagavimas</h3>
+		<div class="divider div-transparent">
+		<form class="prisoner-form" th:action="'/prisoner/update/'+${prisoner.id}" th:object="${prisoner}" method="POST" enctype="multipart/form-data">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<input type="hidden" name="id" th:value="*{id}">
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-name">Vardas</label>
+					<input th:value="*{name}" type="text" class="prisoner-input" name="name" id="new-prisoner-name">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('name')}">
+									<ul class="prisoner-error-list">
+										<li class="prisoner-error" th:each="klaida:${#fields.errors('name')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+				</div>
+				
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-surname">Pavardė</label>
+					<input th:value="*{surname}" type="text" class="prisoner-input" name="surname" id="new-prisoner-surname">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('surname')}">
+									<ul class="prisoner-error-list">
+										<li class="prisoner-error" th:each="klaida:${#fields.errors('surname')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+				</div>
+				
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-birthdate">Gimimo data</label>
+					<input type="text" th:value="*{birthDate}" class="prisoner-input" name="birthDate" id="new-prisoner-birthdate">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('birthDate')}">
+									<ul class="prisoner-error-list">
+										<li class="prisoner-error" th:each="klaida:${#fields.errors('birthDate')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+				</div>
+				
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-phone">Telefono numeris</label>
+					<input th:value="*{phone}" type="text" class="prisoner-input" name="phone" id="new-prisoner-phone">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('phone')}">
+									<ul class="prisoner-error-list">
+										<li class="prisoner-error" th:each="klaida:${#fields.errors('phone')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+				</div>
+				
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" id="file-upload-button" for="new-prisoner-file">Informacijos failas</label>
+					<input type="file" class="prisoner-input" name="infoFile" id="new-prisoner-file">
+					
+				</div>
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-city">Miestas</label>
+					<select name="cityId" th:field="*{city.id}" id="new-prisoner-city" class="prisoner-input">
+						<option th:each="city: ${cities}" th:value="${city.id}" th:text="${city.name}">
+					</select>
+				</div>
+				<div class="prisoner-input-container">
+					<label class="prisoner-label" for="new-prisoner-status">Statusas</label>
+					<select name="statusId" th:field="*{status.id}" id="new-prisoner-status" class="prisoner-input">
+						<option th:each="status :${statuses}" th:value="${status.id}" th:text="${status.status}">
+					</select>
+				</div>
+				<button type="submit" class="prisoner-submit-button">Redaguoti</button>
+			</form>
+		</div>
+		<script>
+			const birthDatePicker = document.querySelector('#new-prisoner-birthdate');
+			flatpickr(birthDatePicker, {"locale": "lt", "allowInput": true, disableMobile: "true"});
+		</script>
+	</body>
+</html>
