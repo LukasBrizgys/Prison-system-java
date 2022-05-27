@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "prisoners")
@@ -36,7 +37,11 @@ public class Prisoner {
 	private String phone;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate birthDate;
+	
+	@Column
+	public String fileName;
 	
 	@ManyToOne
 	@JoinColumn(name = "statusId")
@@ -55,15 +60,16 @@ public class Prisoner {
 			@Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis negu 20 simbolių") @NotBlank(message = "Įveskite vardą") String name,
 			@Length(min = 3, max = 20, message = "Pavardė turi būti ilgesnė nei 3 simboliai ir trumpesnė nei 20 simbolių") String surname,
 			@Pattern(regexp = "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$", message = "Netinkamas telefono numeris") String phone,
-			LocalDate birthDate, Status status, City city) {
+			LocalDate birthDate, String fileName) {
 		super();
 		this.name = name;
 		this.surname = surname;
 		this.phone = phone;
 		this.birthDate = birthDate;
-		this.status = status;
-		this.city = city;
+		this.fileName = fileName;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -119,6 +125,14 @@ public class Prisoner {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 	

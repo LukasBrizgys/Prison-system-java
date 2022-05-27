@@ -2,6 +2,7 @@
 <head>
 	<title>Kalinių sąrašas</title>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link type="text/css" rel="stylesheet" href="/css/main.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,11 @@
 	<h3 class="prisoners-list-heading">Kalinių sąrašas</h3>
 	<div class="divider div-transparent"></div>
 	<div class="prisoner-list-container">
-		<a href="/prisoner/new" class="new-prisoner-button">Pridėti naują kalinį</a>
+		<div class="general-actions">
+			<a href="/prisoner/new" class="general-action-button">Pridėti naują kalinį</a>
+			<a href="/prisoner/newCrime" class="general-action-button">Pridėti nusikaltimą kaliniui</a>
+		</div>
+		
 		<table>
 		<tr>
 			<th>Vardas</th>
@@ -21,6 +26,7 @@
 			<th>Gimimo metai</th>
 			<th>Miestas</th>
 			<th>Statusas</th>
+			<th>Informacija</th>
 			<th>Veiksmai</th>
 		</tr>
 		<tr th:each="prisoner: ${prisoners}">
@@ -29,9 +35,11 @@
 			<td th:text="${prisoner.birthDate}"></td>
 			<td th:text="${prisoner.city.name}"></td>
 			<td th:text="${prisoner.status.status}"></td>
-			<td>
+			<td><a th:href="'/prisoner/info/' + ${prisoner.id}" class="action-button">Atsisiųsti</a></td>
+			<td class="action-row">
 				<a class="action-button" th:href="'/prisoner/update/' + ${prisoner.id}">Redaguoti kalinį</a>
 				<a class="action-button" th:href="'/prisoner/delete/' + ${prisoner.id}">Pašalinti kalinį</a>
+				<a class="action-button" th:href="'/prisoner/crimes/' + ${prisoner.id}">Peržiūrėti nusikaltimus</a>
 			</td>
 		</tr>
 		
