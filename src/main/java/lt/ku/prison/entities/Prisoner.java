@@ -1,6 +1,7 @@
 package lt.ku.prison.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import lt.ku.prison.validation.DateConstraint;
 
 @Entity
 @Table(name = "prisoners")
@@ -38,7 +45,9 @@ public class Prisoner {
 	
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate birthDate;
+	@NotNull(message = "Įveskite datą")
+	@DateConstraint
+	private String birthDate;
 	
 	@Column
 	public String fileName;
@@ -50,7 +59,9 @@ public class Prisoner {
 	@ManyToOne
 	@JoinColumn(name = "cityId")
 	private City city;
-
+	
+	@OneToMany(mappedBy = "prisoner")
+	List<PrisonerCrime> prisonerCrimes;
 	
 	public Prisoner() {
 		super();
@@ -60,7 +71,7 @@ public class Prisoner {
 			@Length(min = 3, max = 20, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis negu 20 simbolių") @NotBlank(message = "Įveskite vardą") String name,
 			@Length(min = 3, max = 20, message = "Pavardė turi būti ilgesnė nei 3 simboliai ir trumpesnė nei 20 simbolių") String surname,
 			@Pattern(regexp = "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$", message = "Netinkamas telefono numeris") String phone,
-			LocalDate birthDate, String fileName) {
+			String birthDate, String fileName) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -103,11 +114,11 @@ public class Prisoner {
 		this.phone = phone;
 	}
 
-	public LocalDate getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

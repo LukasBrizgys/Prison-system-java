@@ -33,8 +33,12 @@ public class PrisonerService {
 		old.setBirthDate(prisoner.getBirthDate());
 		old.setPhone(prisoner.getPhone());
 		old.setCity(prisoner.getCity());
+		if(prisoner.getFileName() != null) {
+			old.setFileName(prisoner.getFileName());
+		}
 		old.setStatus(prisoner.getStatus());
 		prisonerRepository.save(old);
 		return old;
 	}
+	
 }
