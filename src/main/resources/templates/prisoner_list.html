@@ -13,10 +13,10 @@
 	<div th:insert="fragments/navigation.html :: nav"></div>
 	<h3 class="prisoners-list-heading">Kalinių sąrašas</h3>
 	<div class="divider div-transparent"></div>
-	<div class="prisoner-list-container">
+	<div class="list-container">
 		<div class="general-actions">
 			<a href="/prisoner/new" class="general-action-button">Pridėti naują kalinį</a>
-			<a href="/prisoner/newCrime" class="general-action-button">Pridėti nusikaltimą kaliniui</a>
+			<a href="/prisoner/newVisitor" class="general-action-button">Pridėti lankytoją kaliniui</a>
 		</div>
 		
 		<table>
@@ -39,7 +39,7 @@
 			<td class="action-row">
 				<a class="action-button" th:href="'/prisoner/update/' + ${prisoner.id}">Redaguoti kalinį</a>
 				<a class="action-button" th:href="'/prisoner/delete/' + ${prisoner.id}">Pašalinti kalinį</a>
-				<a class="action-button" th:href="'/prisoner/crimes/' + ${prisoner.id}">Peržiūrėti nusikaltimus</a>
+				<a class="action-button" th:href="'/prisoner/visitors/' + ${prisoner.id}">Peržiūrėti Lankytojus</a>
 			</td>
 		</tr>
 		
