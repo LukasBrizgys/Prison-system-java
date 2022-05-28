@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lankytojai</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="/css/main.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+	</head>
+	<body>
+	<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="home-heading">Lankytojų sąrašas</h3>
+		<div class="divider div-transparent"></div>
+		<div class="list-container">
+		<div class="general-actions">
+			<a href="/visitor/new" class="general-action-button">Pridėti naują lankytoją</a>
+		</div>
+		
+		<table>
+		<tr>
+			<th>Vardas</th>
+			<th>Pavardė</th>
+			<th>Gimimo data</th>
+			<th>Veiksmai</th>
+		</tr>
+		<tr th:each="visitor: ${visitors}">
+			<td th:text="${visitor.name}"></td>
+			<td th:text="${visitor.surname}"></td>
+			<td th:text="${visitor.birthDate}"></td>
+			<td class="action-row">
+				<a class="action-button" th:href="'/visitor/update/' + ${visitor.id}">Redaguoti lankytoją</a>
+				<a class="action-button" th:href="'/visitor/delete/' + ${visitor.id}">Pašalinti lankytoją</a>
+			</td>
+		</tr>
+		
+		</table>
+	</div>
+	
+	</body>
+
+</html>

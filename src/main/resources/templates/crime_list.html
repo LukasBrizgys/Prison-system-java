@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Nusikaltimai</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+		<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="home-heading">Nusikaltimų sąrašas</h3>
+		<div class="divider div-transparent"></div>
+		<div class="list-container">
+		<div class="general-actions">
+			<a href="/crime/new" class="general-action-button">Pridėti naują nusikaltimą</a>
+		</div>
+		
+		<table>
+		<tr>
+			<th>Nusikaltimo pavadinimas</th>
+			<th>Veiksmai</th>
+		</tr>
+		<tr th:each="crime: ${crimes}">
+			<td th:text="${crime.name}"></td>
+			<td class="action-row">
+				<a class="action-button" th:href="'/crime/update/' + ${crime.id}">Redaguoti nusikaltimą</a>
+				<a class="action-button" th:href="'/crime/delete/' + ${crime.id}">Pašalinti nusikaltimą</a>
+			</td>
+		</tr>
+		
+		</table>
+	</div>
+</body>
+</html>

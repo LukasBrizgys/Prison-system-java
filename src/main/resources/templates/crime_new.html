@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Naujas kalinys</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+	<body>
+		<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="home-heading">Naujas nusikaltimas</h3>
+		<div class="divider div-transparent"></div>
+		<div class="container">
+			<form class="crime-form" action="/crime/new/" th:object="${crime}" method="POST">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<div class="input-container">
+					<label class="label" for="new-crime-name">Nusikaltimas</label>
+					<input th:value="*{name}" type="text" class="input" name="name" id="new-crime-name">
+					<div class="error-container" th:if="${#fields.hasErrors('name')}">
+									<ul class="error-list">
+										<li class="error" th:each="klaida:${#fields.errors('name')}" th:text="${klaida}"></li>
+									</ul>
+								</div>
+				</div>
+				<button type="submit" class="submit-button">Pridėti</button>
+			</form>
+		</div>
+		
+	</body>
+</html>
