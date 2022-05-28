@@ -44,7 +44,8 @@ public class SecurityConfiguration{
 			try {
 				authz
 						.antMatchers("/").permitAll()
-						.antMatchers("/prisoner/*").permitAll()
+						.antMatchers("/prisoner/").permitAll()
+						.antMatchers("/crime/").permitAll()
 						.antMatchers("/css/*").permitAll()
 						.antMatchers("/login").permitAll()
 						.antMatchers("/register").permitAll()
