@@ -15,8 +15,9 @@
 	<div class="divider div-transparent"></div>
 	<div class="list-container">
 		<div class="general-actions">
-			<a href="/prisoner/new" class="general-action-button">Pridėti naują kalinį</a>
-			<a href="/prisoner/newVisitor" class="general-action-button">Pridėti lankytoją kaliniui</a>
+			<a href="/prisoner/new/" class="general-action-button">Pridėti naują kalinį</a>
+			<a href="/prisoner/newVisitor/" class="general-action-button">Pridėti lankytoją kaliniui</a>
+			<a href="/prisoner/newCrime/" class="general-action-button">Pridėti nusikaltimą kaliniui</a>
 		</div>
 		
 		<table>
@@ -40,6 +41,7 @@
 				<a class="action-button" th:href="'/prisoner/update/' + ${prisoner.id}">Redaguoti kalinį</a>
 				<a class="action-button" th:href="'/prisoner/delete/' + ${prisoner.id}">Pašalinti kalinį</a>
 				<a class="action-button" th:href="'/prisoner/visitors/' + ${prisoner.id}">Peržiūrėti Lankytojus</a>
+				<a class="action-button" th:href="'/prisoner/crimes/' + ${prisoner.id}">Peržiūrėti nusikaltimus</a>
 			</td>
 		</tr>
 		

@@ -63,6 +63,9 @@ public class Prisoner {
 	@OneToMany(mappedBy = "prisoner")
 	List<PrisonerCrime> prisonerCrimes;
 	
+	@OneToMany(mappedBy = "prisoner")
+	List<PrisonerVisitor> prisonerVisitors;
+	
 	public Prisoner() {
 		super();
 	}
