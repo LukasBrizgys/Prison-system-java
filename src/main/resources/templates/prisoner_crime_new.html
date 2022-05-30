@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Pridėti nusikaltimą kaliniui</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://npmcdn.com/flatpickr/dist/l10n/lt.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+	<body>
+		<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="home-heading">Naujas kalinio nusikaltimas</h3>
+		<div class="divider div-transparent"></div>
+		<div class="container">
+			<form class="crime-form" action="/prisoner/newCrime/" method="POST" th:object="${prisonerCrimeKey}">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<div class="input-container">
+					<label class="label" for="new-crime-name">Kalinys</label>
+					<select name="prisonerId" class="input">
+						<option th:each="prisoner :${prisoners}" th:value="${prisoner.id}" th:text="${prisoner.name} + ' ' + ${prisoner.surname}">
+					</select>
+				</div>
+				
+				<div class="input-container">
+					<label class="label" for="new-crime-name">Nusikaltimas</label>
+					<select name="crimeId" class="input">
+						<option th:each="crime : ${crimes}" th:value="${crime.id}" th:text="${crime.name}">
+					</select>
+				</div>
+				<div class="input-container">
+					<label class="label" for="new-prisoner-crime-date">Nusikaltimo data</label>
+					<input th:value="*{date}" name="date" class="input" type="text" id="new-prisoner-crime-date">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('date')}">
+						<ul class="prisoner-error-list">
+							<li class="prisoner-error" th:each="klaida:${#fields.errors('date')}" th:text="${klaida}"></li>
+						</ul>
+					</div>
+				</div>
+				
+				<button type="submit" class="submit-button">Pridėti</button>
+			</form>
+		</div>
+		<script>
+			const birthDatePicker = document.querySelector('#new-prisoner-crime-date');
+			flatpickr(birthDatePicker, {"locale": "lt", "allowInput": true, disableMobile: "true"});
+		</script>
+	</body>
+</html>

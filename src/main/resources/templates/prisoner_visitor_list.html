@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Kalinio lankytojai</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="fragments/navigation.html :: nav"></div>
+	<h3 class="home-heading">Kalinio Lankytojai</h3>
+	<div class="divider div-transparent"></div>
+	<div class="list-container">
+		
+		<table>
+		<tr>
+			<th>Kalinio vardas, pavardė</th>
+			<th>Lankytojo vardas, pavardė</th>
+			<th>Lankymo pradžia</th>
+			<th>Lankymo pabaiga</th>
+			<th>Veiksmai</th>
+		</tr>
+		<tr th:each="prisonerVisitor: ${prisonerVisitors}">
+			<td th:text="${prisonerVisitor.prisoner.name} + ' ' + ${prisonerVisitor.prisoner.surname}"></td>
+			<td th:text="${prisonerVisitor.visitor.name} + ' ' + ${prisonerVisitor.visitor.surname}"></td>
+			<td th:text="${prisonerVisitor.id.startDate}"></td>
+			<td th:text="${prisonerVisitor.finishDate}"></td>
+			<td class="action-row">
+				<form method="POST" action="/prisoner/visitors/delete/">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<input type="hidden" name="prisonerId" th:value="${prisonerVisitor.prisoner.id}">
+					<input type="hidden" name="visitorId" th:value="${prisonerVisitor.visitor.id}">
+					<input type="hidden" name="startDate" th:value="${prisonerVisitor.id.startDate}">
+					<button class="action-button" type="submit">Ištrinti lankytoją</button>
+				</form>
+			</td>
+		</tr>
+		
+		</table>
+	</div>
+</body>
+
+</html>

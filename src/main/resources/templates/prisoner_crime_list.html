@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>Kalinio nusikaltimai</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="fragments/navigation.html :: nav"></div>
+	<h3 class="home-heading">Kalinio nusikaltimai</h3>
+	<div class="divider div-transparent"></div>
+	<div class="list-container">
+		
+		<table>
+		<tr>
+			<th>Nusikaltimas</th>
+			<th>Nusikaltimo data</th>
+			<th>Veiksmai</th>
+		</tr>
+		<tr th:each="prisonerCrime: ${prisonerCrimes}">
+			<td th:text="${prisonerCrime.crime.name}"></td>
+			<td th:text="${prisonerCrime.id.date}"></td>
+			<td class="action-row">
+			<form action="/prisoner/crimes/delete/" method="POST">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<input type="hidden" name="prisonerId" th:value="${prisonerCrime.prisoner.id}">
+				<input type="hidden" name="crimeId" th:value="${prisonerCrime.crime.id}">
+				<input type="hidden" name="date" th:value="${prisonerCrime.id.date}">
+				<button class="action-button">Ištrinti nusikaltimą</button>
+			</form>
+			</td>
+		</tr>
+		
+		</table>
+	</div>
+</body>
+
+</html>

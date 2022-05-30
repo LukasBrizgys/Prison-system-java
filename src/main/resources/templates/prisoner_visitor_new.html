@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>Pridėti Lankytoją kaliniui</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="/css/main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://npmcdn.com/flatpickr/dist/l10n/lt.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</head>
+	<body>
+		<div th:insert="fragments/navigation.html :: nav"></div>
+		<h3 class="home-heading">Naujas kalinio lankytojas</h3>
+		<div class="divider div-transparent"></div>
+		<div class="container">
+			<form class="crime-form" action="/prisoner/newVisitor/" method="POST">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				<div class="input-container">
+					<label class="label" for="new-crime-name">Kalinys</label>
+					<select name="prisonerId" class="input">
+						<option th:each="prisoner :${prisoners}" th:value="${prisoner.id}" th:text="${prisoner.name} + ' ' + ${prisoner.surname}">
+					</select>
+				</div>
+				
+				<div class="input-container">
+					<label class="label" for="new-crime-name">Lankytojas</label>
+					<select name="visitorId" class="input">
+						<option th:each="visitor : ${visitors}" th:value="${visitor.id}" th:text="${visitor.name} + ' ' + ${visitor.surname}">
+					</select>
+				</div>
+				<div class="input-container">
+					<label class="label" for="new-prisoner-visitor-startDate">Lankymo pradžia</label>
+					<input th:field="${prisonerVisitorKey.startDate}" name="startDate" class="input" type="text" id="new-prisoner-visitor-startDate">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('prisonerVisitorKey.startDate')}">
+						<ul class="prisoner-error-list">
+							<li class="prisoner-error" th:each="klaida:${#fields.errors('prisonerVisitorKey.startDate')}" th:text="${klaida}"></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="input-container">
+					<label class="label" for="new-prisoner-visitor-finishDate">Lankymo pabaiga</label>
+					<input th:field="${prisonerVisitor.finishDate}" name="finishDate" class="input" type="text" id="new-prisoner-visitor-finishDate">
+					<div class="prisoner-error-container" th:if="${#fields.hasErrors('prisonerVisitor.finishDate')}">
+						<ul class="prisoner-error-list">
+							<li class="prisoner-error" th:each="klaida:${#fields.errors('prisonerVisitor.finishDate')}" th:text="${klaida}"></li>
+						</ul>
+					</div>
+				</div>
+				
+				<button type="submit" class="submit-button">Pridėti</button>
+			</form>
+		</div>
+		<script>
+			const DatePickerOne = document.querySelector('#new-prisoner-visitor-startDate');
+			flatpickr(DatePickerOne, {"locale": "lt", "allowInput": true, disableMobile: "true",enableTime: true, enableSeconds: true});
+			const DatePickerTwo = document.querySelector('#new-prisoner-visitor-finishDate');
+			flatpickr(DatePickerTwo, {"locale": "lt", "allowInput": true, disableMobile: "true",enableTime: true,  enableSeconds: true});
+			
+			</script>
+	</body>
+</html>
