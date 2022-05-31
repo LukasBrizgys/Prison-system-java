@@ -6,6 +6,7 @@
 *.sw?
 *~
 .#*
+/uploads
 application.properties
 .*.md.html
 .DS_Store
