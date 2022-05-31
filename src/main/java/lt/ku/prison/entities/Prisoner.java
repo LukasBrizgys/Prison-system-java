@@ -3,6 +3,7 @@ package lt.ku.prison.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,10 +61,10 @@ public class Prisoner {
 	@JoinColumn(name = "cityId")
 	private City city;
 	
-	@OneToMany(mappedBy = "prisoner")
+	@OneToMany(mappedBy = "prisoner",  cascade = CascadeType.ALL)
 	List<PrisonerCrime> prisonerCrimes;
 	
-	@OneToMany(mappedBy = "prisoner")
+	@OneToMany(mappedBy = "prisoner",  cascade = CascadeType.ALL)
 	List<PrisonerVisitor> prisonerVisitors;
 	
 	public Prisoner() {

@@ -3,6 +3,7 @@ package lt.ku.prison.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Visitor {
 	@DateConstraint
 	private String birthDate;
 	
-	@OneToMany(mappedBy = "visitor")
+	@OneToMany(mappedBy = "visitor", cascade = CascadeType.ALL)
 	List<PrisonerVisitor> visitorPrisoners;
 	
 	public Visitor() {
