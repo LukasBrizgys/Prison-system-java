@@ -19,7 +19,7 @@
 		<tr>
 			<th>Nusikaltimas</th>
 			<th>Nusikaltimo data</th>
-			<th>Veiksmai</th>
+			<th sec:authorize="hasAuthority('Vyresnysis prižiūrėtojas')">Veiksmai</th>
 		</tr>
 		<tr th:each="prisonerCrime: ${prisonerCrimes}">
 			<td th:text="${prisonerCrime.crime.name}"></td>
@@ -30,7 +30,7 @@
 				<input type="hidden" name="prisonerId" th:value="${prisonerCrime.prisoner.id}">
 				<input type="hidden" name="crimeId" th:value="${prisonerCrime.crime.id}">
 				<input type="hidden" name="date" th:value="${prisonerCrime.id.date}">
-				<button class="action-button">Ištrinti nusikaltimą</button>
+				<button  sec:authorize="hasAuthority('Vyresnysis prižiūrėtojas')" class="action-button">Ištrinti nusikaltimą</button>
 			</form>
 			</td>
 		</tr>

@@ -21,7 +21,7 @@
 			<th>Lankytojo vardas, pavardė</th>
 			<th>Lankymo pradžia</th>
 			<th>Lankymo pabaiga</th>
-			<th>Veiksmai</th>
+			<th  sec:authorize="hasAuthority('Vyresnysis prižiūrėtojas')">Veiksmai</th>
 		</tr>
 		<tr th:each="prisonerVisitor: ${prisonerVisitors}">
 			<td th:text="${prisonerVisitor.prisoner.name} + ' ' + ${prisonerVisitor.prisoner.surname}"></td>
@@ -29,12 +29,12 @@
 			<td th:text="${prisonerVisitor.id.startDate}"></td>
 			<td th:text="${prisonerVisitor.finishDate}"></td>
 			<td class="action-row">
-				<form method="POST" action="/prisoner/visitors/delete/">
+				<form sec:authorize="hasAuthority('Vyresnysis prižiūrėtojas')" method="POST" action="/prisoner/visitors/delete/">
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 					<input type="hidden" name="prisonerId" th:value="${prisonerVisitor.prisoner.id}">
 					<input type="hidden" name="visitorId" th:value="${prisonerVisitor.visitor.id}">
 					<input type="hidden" name="startDate" th:value="${prisonerVisitor.id.startDate}">
-					<button class="action-button" type="submit">Ištrinti lankytoją</button>
+					<button sec:authorize="hasAuthority('Vyresnysis prižiūrėtojas')" class="action-button" type="submit">Ištrinti lankytoją</button>
 				</form>
 			</td>
 		</tr>
